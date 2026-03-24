@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<title>Slumber — A Restful Space</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="slumber.css">
+</head>
+<body>
+
+<div class="bg-photo"></div>
+<div class="bg-overlay"></div>
+<div class="bg-grain"></div>
+
+<div class="app">
+  <div class="header">
+    <h1>Slumber</h1>
+    <p>a quiet place to rest your mind</p>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab-btn active" data-tab="sounds" role="tab">🌿 Sounds</button>
+    <button class="tab-btn" data-tab="music" role="tab">🎵 Music</button>
+  </div>
+
+  <!-- SOUNDS -->
+  <div class="panel active" id="panel-sounds">
+    <div class="sounds-grid">
+
+      <!-- Heavy Rain -->
+      <div class="card sound-card" id="card-rain" onclick="toggleSound('rain')">
+        <div class="scene-art scene-rain">
+          <div class="rain-sky"></div>
+          <div class="rain-cloud c1"></div><div class="rain-cloud c2"></div><div class="rain-cloud c3"></div>
+          <div class="rain-drops">
+            <div class="rd"></div><div class="rd"></div><div class="rd"></div><div class="rd"></div>
+            <div class="rd"></div><div class="rd"></div><div class="rd"></div><div class="rd"></div>
+            <div class="rd"></div><div class="rd"></div><div class="rd"></div><div class="rd"></div>
+          </div>
+          <div class="rain-ground"></div>
+        </div>
+        <div class="sound-label">
+          <span class="sound-play-icon" id="btn-rain">▶</span>
+          <span class="sound-name">Heavy Rain</span>
+        </div>
+        <div class="vol-wrap">
+          <input type="range" class="vol-slider" min="0" max="1" step="0.01" value="0.6" oninput="setVol('rain',this.value)" onclick="event.stopPropagation()">
+        </div>
+      </div>
+
+      <!-- Rain on Glass -->
+      <div class="card sound-card" id="card-rainglass" onclick="toggleSound('rainglass')">
+        <div class="scene-art scene-rainglass">
+          <div class="rg-bg"></div>
+          <div class="rg-frame"></div>
+          <div class="rg-drops">
+            <div class="rgd"></div><div class="rgd"></div><div class="rgd"></div>
+            <div class="rgd"></div><div class="rgd"></div><div class="rgd"></div>
+          </div>
+          <div class="rg-glow"></div>
+        </div>
+        <div class="sound-label">
+          <span class="sound-play-icon" id="btn-rainglass">▶</span>
+          <span class="sound-name">Rain on Glass</span>
+        </div>
+        <div class="vol-wrap">
+          <input type="range" class="vol-slider" min="0" max="1" step="0.01" value="0.6" oninput="setVol('rainglass',this.value)" onclick="event.stopPropagation()">
+        </div>
+      </div>
+
+      <!-- Ocean -->
+      <div class="card sound-card" id="card-ocean" onclick="toggleSound('ocean')">
+        <div class="scene-art scene-ocean">
+          <div class="oc-sky"></div>
+          <div class="oc-sun"></div>
+          <div class="oc-cloud cl1"></div><div class="oc-cloud cl2"></div>
+          <div class="oc-water"></div>
+          <div class="oc-wave w1"></div>
+          <div class="oc-wave w2"></div>
+          <div class="oc-wave w3"></div>
+        </div>
+        <div class="sound-label">
+          <span class="sound-play-icon" id="btn-ocean">▶</span>
+          <span class="sound-name">Ocean Waves</span>
+        </div>
+        <div class="vol-wrap">
+          <input type="range" class="vol-slider" min="0" max="1" step="0.01" value="0.6" oninput="setVol('ocean',this.value)" onclick="event.stopPropagation()">
+        </div>
+      </div>
+
+      <!-- Wind -->
+      <div class="card sound-card" id="card-wind" onclick="toggleSound('wind')">
+        <div class="scene-art scene-wind">
+          <div class="wi-sky"></div>
+          <div class="wi-hill h1"></div><div class="wi-hill h2"></div><div class="wi-hill h3"></div>
+          <div class="wi-grass-wrap">
+            <div class="wi-g"></div><div class="wi-g"></div><div class="wi-g"></div>
+            <div class="wi-g"></div><div class="wi-g"></div><div class="wi-g"></div>
+            <div class="wi-g"></div><div class="wi-g"></div>
+          </div>
+          <div class="wi-line wl1"></div>
+          <div class="wi-line wl2"></div>
+          <div class="wi-line wl3"></div>
+        </div>
+        <div class="sound-label">
+          <span class="sound-play-icon" id="btn-wind">▶</span>
+          <span class="sound-name">Gentle Wind</span>
+        </div>
+        <div class="vol-wrap">
+          <input type="range" class="vol-slider" min="0" max="1" step="0.01" value="0.6" oninput="setVol('wind',this.value)" onclick="event.stopPropagation()">
+        </div>
+      </div>
+
+      <!-- Fireplace -->
+      <div class="card sound-card" id="card-fire" onclick="toggleSound('fire')">
+        <div class="scene-art scene-fire">
+          <div class="fi-room"></div>
+          <div class="fi-arch"></div>
+          <div class="fi-glow"></div>
+          <div class="fi-flame fl1"></div>
+          <div class="fi-flame fl2"></div>
+          <div class="fi-flame fl3"></div>
+          <div class="fi-ember e1"></div>
+          <div class="fi-ember e2"></div>
+          <div class="fi-ember e3"></div>
+          <div class="fi-log"></div>
+        </div>
+        <div class="sound-label">
+          <span class="sound-play-icon" id="btn-fire">▶</span>
+          <span class="sound-name">Fireplace</span>
+        </div>
+        <div class="vol-wrap">
+          <input type="range" class="vol-slider" min="0" max="1" step="0.01" value="0.6" oninput="setVol('fire',this.value)" onclick="event.stopPropagation()">
+        </div>
+      </div>
+
+      <!-- Stream -->
+      <div class="card sound-card" id="card-stream" onclick="toggleSound('stream')">
+        <div class="scene-art scene-stream">
+          <div class="st-forest"></div>
+          <div class="st-tree t1"></div><div class="st-tree t2"></div><div class="st-tree t3"></div>
+          <div class="st-water"></div>
+          <div class="st-ripple r1"></div>
+          <div class="st-ripple r2"></div>
+          <div class="st-ripple r3"></div>
+          <div class="st-rock rk1"></div><div class="st-rock rk2"></div>
+        </div>
+        <div class="sound-label">
+          <span class="sound-play-icon" id="btn-stream">▶</span>
+          <span class="sound-name">Forest Stream</span>
+        </div>
+        <div class="vol-wrap">
+          <input type="range" class="vol-slider" min="0" max="1" step="0.01" value="0.6" oninput="setVol('stream',this.value)" onclick="event.stopPropagation()">
+        </div>
+      </div>
+
+      <!-- Birds -->
+      <div class="card sound-card" id="card-birds" onclick="toggleSound('birds')">
+        <div class="scene-art scene-birds">
+          <div class="bi-sky"></div>
+          <div class="bi-sun"></div>
+          <div class="bi-hill bh1"></div><div class="bi-hill bh2"></div>
+          <div class="bi-bird bb1"></div>
+          <div class="bi-bird bb2"></div>
+          <div class="bi-bird bb3"></div>
+        </div>
+        <div class="sound-label">
+          <span class="sound-play-icon" id="btn-birds">▶</span>
+          <span class="sound-name">Birdsong</span>
+        </div>
+        <div class="vol-wrap">
+          <input type="range" class="vol-slider" min="0" max="1" step="0.01" value="0.6" oninput="setVol('birds',this.value)" onclick="event.stopPropagation()">
+        </div>
+      </div>
+
+      <!-- Crickets -->
+      <div class="card sound-card" id="card-crickets" onclick="toggleSound('crickets')">
+        <div class="scene-art scene-crickets">
+          <div class="cr-night"></div>
+          <div class="cr-moon"></div>
+          <div class="cr-star s1"></div><div class="cr-star s2"></div><div class="cr-star s3"></div>
+          <div class="cr-star s4"></div><div class="cr-star s5"></div>
+          <div class="cr-field"></div>
+          <div class="cr-grass cg1"></div><div class="cr-grass cg2"></div><div class="cr-grass cg3"></div>
+          <div class="cr-firefly cf1"></div><div class="cr-firefly cf2"></div><div class="cr-firefly cf3"></div>
+        </div>
+        <div class="sound-label">
+          <span class="sound-play-icon" id="btn-crickets">▶</span>
+          <span class="sound-name">Crickets</span>
+        </div>
+        <div class="vol-wrap">
+          <input type="range" class="vol-slider" min="0" max="1" step="0.01" value="0.6" oninput="setVol('crickets',this.value)" onclick="event.stopPropagation()">
+        </div>
+      </div>
+
+      <!-- Owl -->
+      <div class="card sound-card" id="card-owl" onclick="toggleSound('owl')">
+        <div class="scene-art scene-owl">
+          <div class="ow-sky"></div>
+          <div class="ow-moon"></div>
+          <div class="ow-branch"></div>
+          <div class="ow-body">
+            <div class="ow-eye oe1"></div>
+            <div class="ow-eye oe2"></div>
+            <div class="ow-beak"></div>
+          </div>
+        </div>
+        <div class="sound-label">
+          <span class="sound-play-icon" id="btn-owl">▶</span>
+          <span class="sound-name">Night Owl</span>
+        </div>
+        <div class="vol-wrap">
+          <input type="range" class="vol-slider" min="0" max="1" step="0.01" value="0.6" oninput="setVol('owl',this.value)" onclick="event.stopPropagation()">
+        </div>
+      </div>
+
+      <!-- Bowl -->
+      <div class="card sound-card" id="card-bowl" onclick="toggleSound('bowl')">
+        <div class="scene-art scene-bowl">
+          <div class="bo-room"></div>
+          <div class="bo-bowl"></div>
+          <div class="bo-ring br1"></div>
+          <div class="bo-ring br2"></div>
+          <div class="bo-ring br3"></div>
+          <div class="bo-candle"></div>
+          <div class="bo-flame"></div>
+        </div>
+        <div class="sound-label">
+          <span class="sound-play-icon" id="btn-bowl">▶</span>
+          <span class="sound-name">Singing Bowl</span>
+        </div>
+        <div class="vol-wrap">
+          <input type="range" class="vol-slider" min="0" max="1" step="0.01" value="0.6" oninput="setVol('bowl',this.value)" onclick="event.stopPropagation()">
+        </div>
+      </div>
+
+      <!-- White Noise -->
+      <div class="card sound-card" id="card-whitenoise" onclick="toggleSound('whitenoise')">
+        <div class="scene-art scene-fog">
+          <div class="fo-bg"></div>
+          <div class="fo-layer fl1"></div>
+          <div class="fo-layer fl2"></div>
+          <div class="fo-layer fl3"></div>
+          <div class="fo-tree ft1"></div>
+          <div class="fo-tree ft2"></div>
+          <div class="fo-tree ft3"></div>
+        </div>
+        <div class="sound-label">
+          <span class="sound-play-icon" id="btn-whitenoise">▶</span>
+          <span class="sound-name">White Noise</span>
+        </div>
+        <div class="vol-wrap">
+          <input type="range" class="vol-slider" min="0" max="1" step="0.01" value="0.6" oninput="setVol('whitenoise',this.value)" onclick="event.stopPropagation()">
+        </div>
+      </div>
+
+      <!-- Underwater -->
+      <div class="card sound-card" id="card-underwater" onclick="toggleSound('underwater')">
+        <div class="scene-art scene-underwater">
+          <div class="uw-water"></div>
+          <div class="uw-light ul1"></div><div class="uw-light ul2"></div>
+          <div class="uw-bubble ub1"></div><div class="uw-bubble ub2"></div>
+          <div class="uw-bubble ub3"></div><div class="uw-bubble ub4"></div>
+          <div class="uw-weed uw1"></div><div class="uw-weed uw2"></div>
+          <div class="uw-fish"></div>
+        </div>
+        <div class="sound-label">
+          <span class="sound-play-icon" id="btn-underwater">▶</span>
+          <span class="sound-name">Underwater</span>
+        </div>
+        <div class="vol-wrap">
+          <input type="range" class="vol-slider" min="0" max="1" step="0.01" value="0.6" oninput="setVol('underwater',this.value)" onclick="event.stopPropagation()">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MUSIC -->
+  <div class="panel" id="panel-music">
+    <div class="music-grid">
+      <div class="card music-card" id="mc-lofi" onclick="toggleMusic('lofi')">
+        <div class="music-icon">📻</div>
+        <div class="music-genre">Lo-fi Beats</div>
+        <div class="music-desc">Warm drone, soft crackle, a cup of tea growing cold</div>
+        <div class="waveform" id="wf-lofi"><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div></div>
+      </div>
+      <div class="card music-card" id="mc-ambient" onclick="toggleMusic('ambient')">
+        <div class="music-icon">🌌</div>
+        <div class="music-genre">Deep Ambient</div>
+        <div class="music-desc">Open fifths drifting like mist over still water</div>
+        <div class="waveform" id="wf-ambient"><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div></div>
+      </div>
+      <div class="card music-card" id="mc-piano" onclick="toggleMusic('piano')">
+        <div class="music-icon">🎹</div>
+        <div class="music-genre">Gentle Piano</div>
+        <div class="music-desc">Soft notes falling like leaves on a windless evening</div>
+        <div class="waveform" id="wf-piano"><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div></div>
+      </div>
+      <div class="card music-card" id="mc-drone" onclick="toggleMusic('drone')">
+        <div class="music-icon">🔔</div>
+        <div class="music-genre">Singing Bowls</div>
+        <div class="music-desc">Resonant tones unwinding in slow spirals</div>
+        <div class="waveform" id="wf-drone"><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div></div>
+      </div>
+      <div class="card music-card" id="mc-strings" onclick="toggleMusic('strings')">
+        <div class="music-icon">🎻</div>
+        <div class="music-genre">String Pad</div>
+        <div class="music-desc">Slow bowed harmonics dissolving into silence</div>
+        <div class="waveform" id="wf-strings"><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div></div>
+      </div>
+      <div class="card music-card" id="mc-binaural" onclick="toggleMusic('binaural')">
+        <div class="music-icon">🧠</div>
+        <div class="music-genre">Delta Waves</div>
+        <div class="music-desc">4 Hz binaural beats for deep dreamless sleep</div>
+        <div class="waveform" id="wf-binaural"><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div><div class="waveform-bar"></div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Sleep Timer -->
+<div class="timer-corner" id="timer-corner">
+  <button class="timer-pill" id="timer-pill-btn" onclick="toggleTimerOpen()">
+    <span class="timer-pill-icon">🌙</span>
+    <span class="timer-pill-label" id="timer-pill-label">Sleep timer</span>
+  </button>
+  <div class="timer-panel" id="timer-panel">
+    <div class="timer-panel-title">Sleep Timer</div>
+    <div class="timer-ring-wrap" id="timer-ring-wrap" style="display:none">
+      <svg class="timer-ring-svg" viewBox="0 0 100 100">
+        <circle class="timer-ring-track" cx="50" cy="50" r="42"/>
+        <circle class="timer-ring-progress" id="timer-ring-progress" cx="50" cy="50" r="42"/>
+      </svg>
+      <div class="timer-ring-text" id="timer-ring-text">0:00</div>
+    </div>
+    <div class="timer-presets">
+      <button class="timer-opt active" data-mins="0"  onclick="setTimer(0,this)">Off</button>
+      <button class="timer-opt" data-mins="15" onclick="setTimer(15,this)">15m</button>
+      <button class="timer-opt" data-mins="30" onclick="setTimer(30,this)">30m</button>
+      <button class="timer-opt" data-mins="45" onclick="setTimer(45,this)">45m</button>
+      <button class="timer-opt" data-mins="60" onclick="setTimer(60,this)">1h</button>
+      <button class="timer-opt" data-mins="90" onclick="setTimer(90,this)">1.5h</button>
+      <button class="timer-opt" data-mins="120" onclick="setTimer(120,this)">2h</button>
+    </div>
+    <div class="timer-custom-row">
+      <span class="timer-custom-label">Custom</span>
+      <div class="timer-spinners">
+        <div class="spinner-group">
+          <button class="spinner-btn" onclick="nudgeTime('h',1)">▲</button>
+          <div class="spinner-val" id="spin-h">0</div>
+          <button class="spinner-btn" onclick="nudgeTime('h',-1)">▼</button>
+          <span class="spinner-unit">h</span>
+        </div>
+        <div class="spinner-sep">:</div>
+        <div class="spinner-group">
+          <button class="spinner-btn" onclick="nudgeTime('m',1)">▲</button>
+          <div class="spinner-val" id="spin-m">00</div>
+          <button class="spinner-btn" onclick="nudgeTime('m',-1)">▼</button>
+          <span class="spinner-unit">m</span>
+        </div>
+        <div class="spinner-sep">:</div>
+        <div class="spinner-group">
+          <button class="spinner-btn" onclick="nudgeTime('s',5)">▲</button>
+          <div class="spinner-val" id="spin-s">00</div>
+          <button class="spinner-btn" onclick="nudgeTime('s',-5)">▼</button>
+          <span class="spinner-unit">s</span>
+        </div>
+      </div>
+      <button class="timer-start-btn" id="timer-start-btn" onclick="startCustomTimer()">Start</button>
+    </div>
+  </div>
+</div>
+
+<div class="sleep-msg" id="sleep-overlay">
+  <div class="sleep-moon">🌙</div>
+  <div class="sleep-text">Time to sleep</div>
+  <button class="sleep-dismiss" onclick="dismissSleep()">Tap to dismiss</button>
+</div>
+
+<script src="slumber.js"></script>
+</body>
+</html>
